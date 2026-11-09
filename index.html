@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLEAU DE BORD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <nav class="logo">
+    </nav>
+    <nav class="Menu">
+        <img src="img/logo.jpeg" alt="logo">
+        <button type="button"><a id="couleur" href="index.html">REGION</a></button>
+        <button type="button" class="btn btn-primary"><a href="DB Levite.html">DB Levite</a></button>
+        <button type="button"><a href="DB Lumuredumonde.html">DB Lumière du monde</a></button>
+        <button type="button"><a href="DB Tabernacle.html">DB Tabernacle</a></button>
+        <button type="button"><a href="DB Benjamin.html">DB Benjamin</a></button>
+    </nav>
+    <h2 class="Bord">TABLEAU DE BORD</h2>
+    <header>
+        <div class="slideshow-container">
+            <div class="slide active"><img src="img/RGION.jpeg" alt="slide 1"></div>
+            <div class="slide"><img src="img/DB.jpeg" alt="slide 2"></div>
+            <div class="slide"><img src="img/Levite.jpeg" alt="slide 3"></div>
+            <div class="slide"><img src="img/Lumière du monde.jpeg" alt="slide 4"></div>
+            <div class="slide"><img src="img/Tabernacle.jpeg" alt="slide 5"></div>
+            <div class="slide"><img src="img/Benjamin.jpeg" alt="slide 6"></div>
+
+            <div class="controls">
+                <a class="prev" onclick="changeslide(-1)" aria-label="Image précédente">&#10094;</a>
+                <a class="next" onclick="changeslide(1)" aria-label="Image suivante">&#10095;</a>
+
+                <div class="slide-progress">
+                    <span class="dot active" onclick="showslide(1)"></span>
+                    <span class="dot" onclick="showslide(2)"></span>
+                    <span class="dot" onclick="showslide(3)"></span>
+                    <span class="dot" onclick="showslide(4)"></span>
+                    <span class="dot" onclick="showslide(5)"></span>
+                    <span class="dot" onclick="showslide(6)"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        let slideIndex = 1;
+        let autoSlide;
+
+        function showslide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === slideIndex - 1);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === slideIndex - 1);
+            });
+        }
+
+        function changeslide(n) {
+            slideIndex += n;
+            showslide(slideIndex);
+            clearInterval(autoSlide);
+            autoSlide = setInterval(() => changeslide(1), 3500);
+        }
+
+        function startAutoSlide() {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(() => changeslide(1), 3500);
+        }
+
+        showslide(slideIndex);
+        startAutoSlide();
+    </script>
+</body>
+</html>
